@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador de QR | Sorteos VIDA</title>
+  <meta name="description" content="Generador de códigos QR en máxima resolución PNG para Landing Sorteos VIDA.">
+
+  <link rel="icon" type="image/png" href="assets/icon.png">
+
+  <!-- Google Fonts: Outfit & Quicksand -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Quicksand:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="container header-inner">
+      <img src="assets/logovida.png" alt="VIDA" class="brand-logo">
+      <span class="header-badge"><i class="fa-solid fa-qrcode"></i> Generador QR · Alta Resolución</span>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+    <div class="container">
+      <section class="qr-card" aria-labelledby="prompt-title">
+        <div class="card-top">
+          <h1 id="prompt-title">INTRODUZCA CODIGO</h1>
+          <p class="card-subtitle">
+            Genera al instante el código QR en formato <strong>PNG de máxima resolución</strong> para
+            <code>Landing_Sorteos_BV_v2</code>.
+          </p>
+        </div>
+
+        <!-- Prompt Form -->
+        <form id="qr-form" class="qr-form" novalidate>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="codigo-input" class="sr-only">INTRODUZCA CODIGO</label>
+              <input
+                type="text"
+                id="codigo-input"
+                name="codigo"
+                placeholder="INTRODUZCA CODIGO (ej. 106)"
+                autocomplete="off"
+                autofocus
+                required
+              >
+            </div>
+
+            <button type="submit" class="btn-primary" id="btn-generate">
+              <i class="fa-solid fa-qrcode"></i> Generar QR
+            </button>
+          </div>
+
+          <div class="options-row">
+            <div class="option-item">
+              <label for="resolution-select"><i class="fa-solid fa-expand"></i> Resolución PNG:</label>
+              <select id="resolution-select" name="resolution">
+                <option value="2048">2048 × 2048 px (HD)</option>
+                <option value="4096" selected>4096 × 4096 px (Ultra HD · Recomendada)</option>
+                <option value="8192">8192 × 8192 px (Máxima · Impresión Gigante)</option>
+              </select>
+            </div>
+            <div class="option-badge">
+              <i class="fa-solid fa-shield-check"></i> Corrección de error: <strong>Nivel H (30%)</strong>
+            </div>
+          </div>
+
+          <p class="error-text hidden" id="error-text" role="alert">
+            Por favor, introduzca un código válido para generar el QR.
+          </p>
+        </form>
+
+        <!-- Result Area -->
+        <div class="result-section hidden" id="result-section" aria-live="polite">
+          <div class="sponsor-pill hidden" id="sponsor-pill">
+            <i class="fa-solid fa-store"></i>
+            <span id="sponsor-pill-text"></span>
+          </div>
+
+          <div class="qr-preview-box">
+            <canvas id="qr-preview-canvas" width="512" height="512" aria-label="Código QR generado"></canvas>
+          </div>
+
+          <div class="url-preview-box">
+            <span class="url-label">URL DESTINO DEL QR</span>
+            <a href="#" id="generated-url-link" class="generated-url" target="_blank" rel="noopener noreferrer"></a>
+          </div>
+
+          <div class="meta-bar" id="qr-meta-bar"></div>
+
+          <div class="action-buttons">
+            <button type="button" class="btn-download" id="btn-download-png">
+              <i class="fa-solid fa-download"></i>
+              <span id="download-btn-label">Descargar PNG (4096 × 4096 px)</span>
+            </button>
+            <button type="button" class="btn-secondary" id="btn-copy-url">
+              <i class="fa-regular fa-copy"></i> Copiar URL
+            </button>
+            <a href="#" id="btn-open-url" class="btn-secondary" target="_blank" rel="noopener noreferrer">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Probar Enlace
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <p>VIDA Servicio de Compañía · Generador de QR para <strong>Landing_Sorteos_BV_v2</strong></p>
+    </div>
+  </footer>
+
+  <!-- Bundled offline-ready QR generator library -->
+  <script src="lib/qrcode.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
